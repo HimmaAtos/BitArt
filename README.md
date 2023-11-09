@@ -5,10 +5,15 @@ Bit ’Art est un projet qui consiste à mettre en place une application mobile 
 **Fonctionnalités principales**
 
 Authentification : Donner au utilisateurs la possibilité de créer un compte et se connecter après en fournissant leurs informations afin d'accéder aux fonctionnalités de l'application.
+
 Lister les articles : Donner aux utilisateurs la possibilité de lister tous les articles.
+
 Ajouter article : En tant qu’utilisateur, je veux ajouter des articles en créant un contenu numérique pouvant être tokenisé en NFT.
+
 Passer la commande : Etant donné que je veux acheter un article donc je dois avoir la possibilité de passer une commande.
+
 Vendre un NFT via son portefeuille de cryptomonnaie : En tant qu’utilisateur, je veux avoir la possibilité de vendre mes articles en utilisant le bitcoin.
+
 Acheter un NFT via son portefeuille de cryptomonnaie : En tant qu’utilisateur, je veux avoir la possibilité d'acheter des articles en utilisant le bitcoin.
 
 
