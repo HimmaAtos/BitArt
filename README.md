@@ -1,4 +1,5 @@
 **Description**
+
 Bit ’Art est un projet qui consiste à mettre en place une application mobile innovante qui vise à révolutionner le marché de l'art en permettant aux artistes et amateurs d'art d'acheter et de vendre des œuvres d'art en utilisant Bitcoin. Ce projet combine les avantages de la technologie blockchain et de la crypto-monnaie avec le monde de l’art, offrant une plateforme sécurisée, transparente et efficace pour les transactions artistiques. 
 
 **Fonctionnalités principales**
