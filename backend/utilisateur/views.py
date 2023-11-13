@@ -42,3 +42,8 @@ class LoginView(APIView):
             'jwt': token
         }
         return response
+
+    
+class LogoutView(APIView):
+    def post(self, request):
+        pass
