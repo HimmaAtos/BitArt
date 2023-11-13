@@ -1,240 +1,211 @@
+// ignore_for_file: sort_child_properties_last, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:front/my_flutter_app_icons.dart';
+import 'package:front/pages/home.dart';
+import 'package:front/pages/register.dart';
 
 //import 'package:hexcolor/hexcolor.dart';
 
-
 // code du home page  de bit'Art
 void main() {
+  // ignore: prefer_const_constructors
+  // runApp(MaterialApp(
+  //   //home: BitArtHome(),
+  //   debugShowCheckedModeBanner: false,
+  //   home: const BitArtHome(),
+  // ));
+
   runApp(MaterialApp(
-    home: BitArtHome(),
-      debugShowCheckedModeBanner: false
-    //home: BitArtCreateAccount(),
+    routes: <String, WidgetBuilder>{
+      "/home": (BuildContext context) => const BitArtHome(),
+      "/register": (BuildContext context) => const Register(),
+      // "/secret": (BuildContext context) => const SecretPage(),
+    },
+    initialRoute: "/home",
+    title: 'Bit\'Art',
+    debugShowCheckedModeBanner: false,
+    // theme: ThemeData(
+    //   primarySwatch: Colors.blue,
+    // ),
+    home: const BitArtHome(),
   ));
 }
 
-
-class BitArtHome extends StatelessWidget
-{
+/*
+class BitArtCreateAccount extends StatelessWidget {
   @override
-  Widget build(BuildContext context)
-  {
-  return Scaffold(
-    backgroundColor: Colors.white,
-    body: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-
-          flex: 3,
-         child :  Center(
-        //child: Image.asset("images/bitArt-logo.png"),
-
-        /*child: CircleAvatar(
-          backgroundImage: AssetImage("images/logo.png") ,
-          radius: 80,
-        ),*/
-           child: Image(
-             image: AssetImage("images/logo.png"),
-
-           ),
-         )
-        ),
-
-        Expanded(
-          flex : 4,
-
-            child: Container(
-              //color: const Color(0Xffffff),
-              decoration: BoxDecoration(
-                //border: Border.all( width: 1),
-                /*border: Border(
-                  top: BorderSide(width: 1)
-
-                ),*/
-                //borderRadius: BorderRadius.circular(40),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40)  , topRight:Radius.circular(40) ),
-                //color: Colors.yellow[400],
-                color: Color(0xDB2C736C)
-
-              ),
-              //color: const Color(0x2C736C),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "\"In art, all repetition is nil\"",
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-
-                        ) ,
-                        ),
-                        SizedBox(height: 20,),
-                        Text(
-                          "Josué Ortago y Gasset",
-                          style: TextStyle(
-                            fontSize: 20,
-
-                          ) ,
-                        ),
-                        SizedBox(height: 30,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                                onPressed: (){},
-                                child: Text("  Register   ", style: TextStyle(color: Color(0xDB2C736C), fontSize: 20),),
-                              style: ButtonStyle(
-
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    //side : BorderSide(color: Colors.black),
-
-
-                                  )
-                                ),
-                                backgroundColor:  MaterialStatePropertyAll<Color>(Colors.white),
-
-                                //textStyle: TextStyle(color: Colors.green)
-                              ),
-                            ),
-                            SizedBox(width: 20),
-                            ElevatedButton(
-                              onPressed: (){},
-                              child: Text("     Login     ", style: TextStyle(color: Colors.white, fontSize: 20),),
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      //side : BorderSide(color: Colors.black),
-
-
-                                    )
-                                ),
-                                backgroundColor:  MaterialStatePropertyAll<Color>(Color(0xDB2C736C)),
-                                padding: MaterialStateProperty.all(EdgeInsets.only(bottom: 15, top: 10))
-
-                                //textStyle: TextStyle(color: Colors.green)
-                              ),
-                            )
-                          ],
-                        ),
-
-                        //Padding(padding: EdgeInsets.fromLTRB(l, top, right, 0))
-                        Container(
-                          margin: EdgeInsets.fromLTRB(50, 50, 50, 10),
-                          child: Text("V1.0.0" , style: TextStyle(fontSize: 18, color: Colors.white),
-
-                            )
-                          ,)
-                      ],
-                  ),
-
-        ),
-
-        )
-
-      ],
-    ),
-  );
-  }
-}
-
-class BitArtCreateAccount extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xDB2C736C),
+      backgroundColor: const Color(0xDB2C736C),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             flex: 2,
             child: Container(
-              child: Center(
+              child: const Center(
                 child: Image(
                   image: AssetImage("images/logo-small.png"),
                 ),
               ),
             ),
           ),
-
           Expanded(
             flex: 6,
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40),
-                    topLeft: Radius.circular(40),
-                ),
-                color: Colors.white
-              ),
-              child : Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 30),
-                    child: Text(
-                      "CREATE ACCOUNT",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        flex : 4,
-                        child: Container(
-                          //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                          padding: EdgeInsets.only(top: 30, left: 30),
-                          child:  SizedBox(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(40),
+                    ),
+                    color: Colors.white),
+                child: Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: const Text(
+                          "CREATE ACCOUNT",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
+                            padding: const EdgeInsets.only(top: 30, left: 30),
+                            child: const SizedBox(
                               width: 300,
                               child: TextField(
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'First name',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5))),
+                                  labelText: 'First namee',
                                 ),
                               ),
-                            ) ,
-
-                        ),
-                      ),
-                      Expanded(
-                        
-                        flex : 1,
-                        child : Container(
-
-                          //width: 10,
-                          padding: EdgeInsets.only(top: 8, right: 2),
-                          margin: EdgeInsets.only(right: 17),
-                          child: Icon(Icons.account_circle, size: 52, color: Colors.white,),
-                          decoration: BoxDecoration(
-                            //border : Border.all(width : 1, color : Colors.black),
-                              color : Color(0xDB2C736C),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                            ),
                           ),
-
-                        )
-                      )
-
-
-
-                    ],
-                  )
-                ],
-              )
-            ),
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              //width: 10,
+                              padding: const EdgeInsets.only(top: 8, right: 2),
+                              margin: const EdgeInsets.only(right: 17),
+                              child: const Icon(
+                                Icons.account_circle,
+                                size: 51,
+                                color: Colors.white,
+                              ),
+                              decoration: const BoxDecoration(
+                                  //border : Border.all(width : 1, color : Colors.black),
+                                  color: Color(0xDB2C736C),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                  )),
+                            ))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
+                            padding: const EdgeInsets.only(top: 30, left: 30),
+                            child: const SizedBox(
+                              width: 300,
+                              child: TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5))),
+                                  labelText: 'First namee',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              //width: 10,
+                              padding: const EdgeInsets.only(top: 8, right: 2),
+                              margin: const EdgeInsets.only(right: 17),
+                              child: const Icon(
+                                Icons.account_circle,
+                                size: 51,
+                                color: Colors.white,
+                              ),
+                              decoration: const BoxDecoration(
+                                  //border : Border.all(width : 1, color : Colors.black),
+                                  color: Color(0xDB2C736C),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                  )),
+                            ))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
+                            padding: const EdgeInsets.only(top: 30, left: 30),
+                            child: const SizedBox(
+                              width: 300,
+                              child: TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5))),
+                                  labelText: 'First namee',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              //width: 10,
+                              padding: const EdgeInsets.only(top: 8, right: 2),
+                              margin: const EdgeInsets.only(right: 17),
+                              child: const Icon(
+                                Icons.account_circle,
+                                size: 51,
+                                color: Colors.white,
+                              ),
+                              decoration: const BoxDecoration(
+                                  //border : Border.all(width : 1, color : Colors.black),
+                                  color: Color(0xDB2C736C),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                  )),
+                            ))
+                      ],
+                    ),
+                  ],
+                )),
           )
         ],
-
       ),
     );
   }
 }
+*/
