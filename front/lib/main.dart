@@ -8,6 +8,7 @@ import 'package:front/my_flutter_app_icons.dart';
 void main() {
   runApp(MaterialApp(
     home: BitArtHome(),
+      debugShowCheckedModeBanner: false
     //home: BitArtCreateAccount(),
   ));
 }
@@ -35,6 +36,7 @@ class BitArtHome extends StatelessWidget
         ),*/
            child: Image(
              image: AssetImage("images/logo.png"),
+
            ),
          )
         ),
@@ -82,12 +84,13 @@ class BitArtHome extends StatelessWidget
                           children: [
                             ElevatedButton(
                                 onPressed: (){},
-                                child: Text("    Register     ", style: TextStyle(color: Color(0xDB2C736C), fontSize: 20),),
+                                child: Text("  Register   ", style: TextStyle(color: Color(0xDB2C736C), fontSize: 20),),
                               style: ButtonStyle(
+
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    side : BorderSide(color: Colors.black),
+                                    //side : BorderSide(color: Colors.black),
 
 
                                   )
@@ -100,17 +103,18 @@ class BitArtHome extends StatelessWidget
                             SizedBox(width: 20),
                             ElevatedButton(
                               onPressed: (){},
-                              child: Text("       Login       ", style: TextStyle(color: Colors.white, fontSize: 20),),
+                              child: Text("     Login     ", style: TextStyle(color: Colors.white, fontSize: 20),),
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
-                                      side : BorderSide(color: Colors.black),
+                                      //side : BorderSide(color: Colors.black),
 
 
                                     )
                                 ),
                                 backgroundColor:  MaterialStatePropertyAll<Color>(Color(0xDB2C736C)),
+                                padding: MaterialStateProperty.all(EdgeInsets.only(bottom: 15, top: 10))
 
                                 //textStyle: TextStyle(color: Colors.green)
                               ),
