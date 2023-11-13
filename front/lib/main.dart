@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
+//import 'package:front/login_page.dart';
 import 'package:front/my_flutter_app_icons.dart';
 
 //import 'package:hexcolor/hexcolor.dart';
@@ -7,7 +10,8 @@ import 'package:front/my_flutter_app_icons.dart';
 // code du home page  de bit'Art
 void main() {
   runApp(MaterialApp(
-    home: BitArtHome(),
+    home: LoginPage(),
+    //home: BitArtHome(),
     //home: BitArtCreateAccount(),
   ));
 }
@@ -222,6 +226,99 @@ class BitArtCreateAccount extends StatelessWidget
 
 
 
+                    ],
+                  )
+                ],
+              )
+            ),
+          )
+        ],
+
+      ),
+    );
+  }
+}
+class LoginPage extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+      backgroundColor: Color(0xDB2C736C),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              child: Center(
+                child: Image(
+                  image: AssetImage("images/logo-small.png"),
+                ),
+              ),
+            ),
+          ),
+
+          Expanded(
+            flex: 6,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(40),
+                    topLeft: Radius.circular(40),
+                ),
+                color: Colors.white
+              ),
+              child : Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Text(
+                      "LOGIN TO CONTINUE",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        flex : 4,
+                        child: Container(
+                          //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
+                          padding: EdgeInsets.only(top: 30, left: 30),
+                          child:  SizedBox(
+                              width: 300,
+                              child: TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'E-mail',
+                                ),
+                              ),
+                            ) ,
+
+                        ),
+                      ),
+                      Expanded(
+                        
+                        flex : 1,
+                        child : Container(
+
+                          //width: 10,
+                          padding: EdgeInsets.only(top: 8, right: 2),
+                          margin: EdgeInsets.only(right: 17),
+                          child: Icon(Icons.email, size: 52, color: Colors.white,),
+                          decoration: BoxDecoration(
+                            //border : Border.all(width : 1, color : Colors.black),
+                              color : Color(0xDB2C736C),
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(20))
+                          ),
+                         
+                        )
+                      )
                     ],
                   )
                 ],
