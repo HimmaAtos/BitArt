@@ -42,3 +42,52 @@ class LoginView(APIView):
             'jwt': token
         }
         return response
+
+class ChangePassword(APIView):
+    def post(self, request):
+        confirm = request.data['confirm']
+        password = request.data['password']
+        if confirm != password :
+            raise AuthenticationFailed('Veillez saisir de nouveau le mot de pass!')
+
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('Non authentifier!')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Non authentifier!')
+
+        user = Utilisateur.objects.filter(id=payload['id']).first()
+        serializer = UtilisateurSerializer(user)
+        # serializer.password = password
+        serializer.data['password'] = password
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        response = Response()
+
+        response.set_cookie(key='jwt', value=token, httponly=True)
+        response.data = {
+            'data': serializer
+        }
+        return response
+
+class UserView(APIView):
+
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+
+        user = Utilisateur.objects.filter(id=payload['id']).first()
+        print(user)
+        serializer = UtilisateurSerializer(user)
+        return Response(serializer.data)
