@@ -51,3 +51,12 @@ Fonctionnement :
      
 **PostgreSQL** : Pour la base de données
 
+**Envirronement de travail** : Voici les outils à télécharger et insaller pour éxecuter notre travail.
+**Partie frontend**
+[Android Studio(https://developer.android.com/studio)]
+[Flutter(https://docs.flutter.dev/get-started/install)]
+
+**Partie backend**
+[Python(https://www.python.org/downloads/)]
+[PostgreSQL(https://www.postgresql.org/download/)]
+
