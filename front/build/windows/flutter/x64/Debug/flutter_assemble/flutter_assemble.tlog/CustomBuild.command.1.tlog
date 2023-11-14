@@ -1,0 +1,28 @@
+^C:\USERS\A900126\ONEDRIVE - ATOS\BUREAU\BITTART\BITART\FRONT\BUILD\WINDOWS\CMAKEFILES\7A8C806D33E4FF4111E3FE0EB8F04730\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\src\flutter "PROJECT_DIR=C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front" FLUTTER_ROOT=C:\src\flutter "FLUTTER_EPHEMERAL_DIR=C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front\windows\flutter\ephemeral" "PROJECT_DIR=C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front" "FLUTTER_TARGET=C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front\lib\main.dart" DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC8wNTQ1Zjg3MDVkZjMwMTg3N2Q3ODcxMDdiYWMxYTZlOWZjOWVlMWFkLw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false "PACKAGE_CONFIG=C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front\.dart_tool\package_config.json" C:/src/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\A900126\ONEDRIVE - ATOS\BUREAU\BITTART\BITART\FRONT\BUILD\WINDOWS\CMAKEFILES\4FA42FF2BE73F5E0F5C5BEC8116A5978\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\A900126\ONEDRIVE - ATOS\BUREAU\BITTART\BITART\FRONT\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/a900126/OneDrive - Atos/Bureau/bittart/BitArt/front/windows" "-BC:/Users/a900126/OneDrive - Atos/Bureau/bittart/BitArt/front/build/windows" --check-stamp-file "C:/Users/a900126/OneDrive - Atos/Bureau/bittart/BitArt/front/build/windows/flutter/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

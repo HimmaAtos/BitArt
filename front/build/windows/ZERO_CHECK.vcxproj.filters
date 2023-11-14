@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\a900126\OneDrive - Atos\Bureau\bittart\BitArt\front\build\windows\CMakeFiles\84520a78edadbbf3caab03f7e6b4d907\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{47A81B83-34FE-35F2-A769-023F9F678386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
