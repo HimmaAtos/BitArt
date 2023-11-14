@@ -26,8 +26,6 @@ Acheter un NFT via son portefeuille de cryptomonnaie : En tant qu’utilisateur,
 
 
 
-
-
 **Technologies utilisés**
 
 
@@ -53,12 +51,9 @@ Fonctionnement :
 
 **Envirronement de travail** : Voici les outils à télécharger et insaller pour éxecuter notre travail.
 
-
 **Partie frontend**
-
 [Android Studio(https://developer.android.com/studio)]
 [Flutter(https://docs.flutter.dev/get-started/install)]
-
 
 **Partie backend**
 [Python(https://www.python.org/downloads/)]
