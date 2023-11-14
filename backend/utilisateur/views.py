@@ -43,6 +43,7 @@ class LoginView(APIView):
         }
         return response
 
+<<<<<<< HEAD
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
@@ -51,3 +52,9 @@ class LogoutView(APIView):
             'message': 'success'
         }
         return response
+=======
+    
+class LogoutView(APIView):
+    def post(self, request):
+        pass
+>>>>>>> d2e62d67b6f519d3e8d753a70a0dc121f4487baf
