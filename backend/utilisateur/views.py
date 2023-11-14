@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import UtilisateurSerializer
+from .serializers import UtilisateurSerializer, ChangePasswordSerializer
 from .models import Utilisateur
+from rest_framework import generics
 from rest_framework.response import Response 
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.permissions import IsAuthenticated
 import jwt, datetime
+
 
 
 class RegisterView(APIView):
@@ -25,7 +28,7 @@ class LoginView(APIView):
             raise AuthenticationFailed('Utilisateur introuvable!')
 
         if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect password!')
+            raise AuthenticationFailed('mot de passe incorrect!')
 
         payload = {
             'id': user.id,
@@ -43,7 +46,6 @@ class LoginView(APIView):
         }
         return response
 
-<<<<<<< HEAD
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
@@ -52,9 +54,42 @@ class LogoutView(APIView):
             'message': 'success'
         }
         return response
-=======
-    
-class LogoutView(APIView):
+
+  
+""" class ChangePasswordView(APIView):
     def post(self, request):
-        pass
->>>>>>> d2e62d67b6f519d3e8d753a70a0dc121f4487baf
+        serializer = UtilisateurSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+        email = request.data['email']
+        old_password = request.data.get['old_password']
+        new_password = request.data.get['new_password']
+        confirm_password = request.data.get['confirm_password']
+
+        user = Utilisateur.objects.filter(email=email).first()
+
+       #je suppose que l'utilisateur est connecté, je doit faire un required
+        if not user.check_password(old_password):
+            raise AuthenticationFailed('mot de passe incorrect!')
+
+        #if not check_password(old_password, confirm_password):
+            #raise ValidationError('les mots de passe ne correspondent pas!')    ---<j'ai reglé ce probleme dans le serializer
+
+        user.set
+
+        
+"""
+
+class ChangePasswordView(generics.UpdateAPIView):
+    queryset = Utilisateur.objects.all()
+    #permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer
+        
+
+        
+        
+        
+    
