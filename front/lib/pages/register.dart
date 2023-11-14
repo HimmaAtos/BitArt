@@ -57,13 +57,23 @@ class _RegisterState extends State<Register> {
                                   padding: const EdgeInsets.only(top: 30, left: 30),
                                   child: const SizedBox(
                                     width: 300,
+                                    height: 50,
                                     child: TextField(
                                       obscureText: true,
                                       decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor:  Color(0x99C2C2C2),
+
                                         border: OutlineInputBorder(
+
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5))),
+                                                bottomLeft: Radius.circular(5)
+                                            ),
+                                          borderSide: BorderSide.none,
+
+
+                                        ),
                                         labelText: 'First name',
                                       ),
                                     ),
@@ -75,22 +85,78 @@ class _RegisterState extends State<Register> {
                                   child: Container(
                                     //width: 10,
                                     padding: const EdgeInsets.only(
-                                        top: 15, right: 2, bottom: 15),
+                                        top: 13, right: 2, bottom: 15),
                                     margin: const EdgeInsets.only(right: 17),
                                     child: const Icon(
                                       Icons.account_circle,
-                                      size: 30,
+                                      size: 22,
                                       color: Colors.white,
                                     ),
                                     decoration: const BoxDecoration(
                                       //border : Border.all(width : 1, color : Colors.black),
                                         color: Color(0xDB2C736C),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
                                         )),
                                   ))
                             ],
                           ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                              //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
+                              padding: const EdgeInsets.only(top: 30, left: 30),
+                              child: const SizedBox(
+                                width: 300,
+                                height: 50,
+                                child: TextField(
+                                  obscureText: true,
+                                  decoration:  InputDecoration(
+                                  filled: true,
+                                  fillColor:  Color(0x99C2C2C2),
+
+                                  border: OutlineInputBorder(
+
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        bottomLeft: Radius.circular(5)
+                                    ),
+                                    borderSide: BorderSide.none,
+
+
+                                  ),
+                                  labelText: 'Last Name',
+                                ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                //width: 10,
+                                padding: const EdgeInsets.only(
+                                    top: 13, right: 2, bottom: 15),
+                                margin: const EdgeInsets.only(right: 17),
+                                child: const Icon(
+                                  Icons.account_circle,
+                                  size: 22,
+                                  color: Colors.white,
+                                ),
+                                decoration: const BoxDecoration(
+                                  //border : Border.all(width : 1, color : Colors.black),
+                                    color: Color(0xDB2C736C),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(5),
+                                      bottomRight: Radius.circular(5),
+                                    )),
+                              ))
+                        ],
+                      ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -102,15 +168,26 @@ class _RegisterState extends State<Register> {
                                   const EdgeInsets.only(top: 30, left: 30),
                                   child: const SizedBox(
                                     width: 300,
+                                    height: 50,
                                     child: TextField(
                                       obscureText: true,
                                       decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5))),
-                                        labelText: 'Last name',
+                                      filled: true,
+                                      fillColor:  Color(0x99C2C2C2),
+
+                                      border: OutlineInputBorder(
+
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5),
+
+                                        ),
+                                        borderSide: BorderSide.none,
+
+
                                       ),
+                                      labelText: 'Email',
+                                    ),
                                     ),
                                   ),
                                 ),
@@ -120,63 +197,19 @@ class _RegisterState extends State<Register> {
                                   child: Container(
                                     //width: 10,
                                     padding: const EdgeInsets.only(
-                                        top: 15, right: 2, bottom: 15),
+                                        top: 13, right: 2, bottom: 15),
                                     margin: const EdgeInsets.only(right: 17),
                                     child: const Icon(
-                                      Icons.account_circle,
-                                      size: 30,
+                                      Icons.mail,
+                                      size: 22,
                                       color: Colors.white,
                                     ),
                                     decoration: const BoxDecoration(
                                       //border : Border.all(width : 1, color : Colors.black),
                                         color: Color(0xDB2C736C),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                        )),
-                                  ))
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                                  padding:
-                                  const EdgeInsets.only(top: 30, left: 30),
-                                  child: const SizedBox(
-                                    width: 300,
-                                    child: TextField(
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5))),
-                                        labelText: 'Email',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    //width: 10,
-                                    padding: const EdgeInsets.only(
-                                        top: 15, right: 2, bottom: 15),
-                                    margin: const EdgeInsets.only(right: 17),
-                                    child: const Icon(
-                                      Icons.email,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      //border : Border.all(width : 1, color : Colors.black),
-                                        color: Color(0xDB2C736C),
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
                                         )),
                                   ))
                             ],
@@ -192,15 +225,25 @@ class _RegisterState extends State<Register> {
                                   const EdgeInsets.only(top: 30, left: 30),
                                   child: const SizedBox(
                                     width: 300,
+                                    height: 50,
                                     child: TextField(
                                       obscureText: true,
                                       decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5))),
-                                        labelText: 'Phone',
+                                      filled: true,
+                                      fillColor:  Color(0x99C2C2C2),
+
+                                      border: OutlineInputBorder(
+
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5)
+                                        ),
+                                        borderSide: BorderSide.none,
+
+
                                       ),
+                                      labelText: 'Phone',
+                                    ),
                                     ),
                                   ),
                                 ),
@@ -210,18 +253,20 @@ class _RegisterState extends State<Register> {
                                   child: Container(
                                     //width: 10,
                                     padding: const EdgeInsets.only(
-                                        top: 15, right: 2, bottom: 15),
+                                        top: 13, right: 2, bottom: 15),
                                     margin: const EdgeInsets.only(right: 17),
                                     child: const Icon(
                                       Icons.phone,
-                                      size: 30,
+                                      size: 22,
                                       color: Colors.white,
                                     ),
                                     decoration: const BoxDecoration(
                                       //border : Border.all(width : 1, color : Colors.black),
                                         color: Color(0xDB2C736C),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
+                                          //topRight: Radius.circular(10),
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
                                         )),
                                   ))
                             ],
@@ -237,15 +282,25 @@ class _RegisterState extends State<Register> {
                                   const EdgeInsets.only(top: 30, left: 30),
                                   child: const SizedBox(
                                     width: 300,
+                                    height: 50,
                                     child: TextField(
                                       obscureText: true,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5))),
-                                        labelText: 'Password',
+                                      decoration:InputDecoration(
+                                      filled: true,
+                                      fillColor:  Color(0x99C2C2C2),
+
+                                      border: OutlineInputBorder(
+
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5)
+                                        ),
+                                        borderSide: BorderSide.none,
+
+
                                       ),
+                                      labelText: 'Password',
+                                    ),
                                     ),
                                   ),
                                 ),
@@ -255,26 +310,29 @@ class _RegisterState extends State<Register> {
                                   child: Container(
                                     //width: 10,
                                     padding: const EdgeInsets.only(
-                                        top: 15, right: 2, bottom: 15),
+                                        top: 13, right: 2, bottom: 15),
                                     margin: const EdgeInsets.only(right: 17),
                                     child: const Icon(
                                       Icons.lock,
-                                      size: 30,
+                                      size: 22,
                                       color: Colors.white,
                                     ),
                                     decoration: const BoxDecoration(
                                       //border : Border.all(width : 1, color : Colors.black),
                                         color: Color(0xDB2C736C),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
+                                          //topRight: Radius.circular(10),
+                                          topRight: Radius.circular(5),
+                                          bottomRight: Radius.circular(5),
                                         )),
                                   ))
                             ],
                           ),
-
+                            SizedBox(height: 4,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children:[
+                              SizedBox(width: 8),
                               Expanded(
                                 flex : 2,
                                   child: Container(
@@ -287,7 +345,7 @@ class _RegisterState extends State<Register> {
                                   ),
                               ),
                               Expanded(
-                                flex: 10,
+                                flex: 11,
 
                                 child : Container(
                                   margin: EdgeInsets.only(top: 13),
