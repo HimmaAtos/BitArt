@@ -1,5 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:html';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:front/my_flutter_app_icons.dart';
+//import 'package:front/my_flutter_app_icons.dart';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -9,6 +15,12 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  Map infosNewUser = {};
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +31,7 @@ class _RegisterState extends State<Register> {
           Expanded(
             flex: 2,
             child: Container(
+              //padding: EdgeInsets.symmetric(vertical = 12),
               child: const Center(
                 child: Image(
                   image: AssetImage("images/logo-small.png"),
@@ -28,15 +41,16 @@ class _RegisterState extends State<Register> {
           ),
           Expanded(
             flex: 6,
-            child: Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40),
-                    ),
-                    color: Colors.white),
-                child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(40),
+                        topLeft: Radius.circular(40),
+                      ),
+                      color: Colors.white),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                           padding: const EdgeInsets.only(top: 30),
@@ -47,90 +61,33 @@ class _RegisterState extends State<Register> {
                               fontWeight: FontWeight.bold,
                             ),
                           )),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                                  padding: const EdgeInsets.only(top: 30, left: 30),
-                                  child: const SizedBox(
-                                    width: 300,
-                                    height: 50,
-                                    child: TextField(
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor:  Color(0x99C2C2C2),
-
-                                        border: OutlineInputBorder(
-
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5)
-                                            ),
-                                          borderSide: BorderSide.none,
-
-
-                                        ),
-                                        labelText: 'First name',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    //width: 10,
-                                    padding: const EdgeInsets.only(
-                                        top: 13, right: 2, bottom: 15),
-                                    margin: const EdgeInsets.only(right: 17),
-                                    child: const Icon(
-                                      Icons.account_circle,
-                                      size: 22,
-                                      color: Colors.white,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      //border : Border.all(width : 1, color : Colors.black),
-                                        color: Color(0xDB2C736C),
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )),
-                                  ))
-                            ],
-                          ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Expanded(
                             flex: 4,
                             child: Container(
-                              //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                              padding: const EdgeInsets.only(top: 30, left: 30),
-                              child: const SizedBox(
+                              padding: EdgeInsets.only(top: 30, left: 30),
+                              child: SizedBox(
                                 width: 300,
                                 height: 50,
                                 child: TextField(
-                                  obscureText: true,
-                                  decoration:  InputDecoration(
-                                  filled: true,
-                                  fillColor:  Color(0x99C2C2C2),
-
-                                  border: OutlineInputBorder(
-
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(5),
-                                        bottomLeft: Radius.circular(5)
+                                  controller: firstNameController,
+                                  obscureText: false,
+                                  style: TextStyle(
+                                      color: Colors.black), // Set text color
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[
+                                        200], // Set light gray background color
+                                    border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide.none, // Remove border
+                                      borderRadius: BorderRadius.circular(
+                                          5), // Add border radius
                                     ),
-                                    borderSide: BorderSide.none,
-
-
+                                    hintText: 'First Name',
                                   ),
-                                  labelText: 'Last Name',
-                                ),
                                 ),
                               ),
                             ),
@@ -139,344 +96,402 @@ class _RegisterState extends State<Register> {
                               flex: 1,
                               child: Container(
                                 //width: 10,
-                                padding: const EdgeInsets.only(
-                                    top: 13, right: 2, bottom: 15),
-                                margin: const EdgeInsets.only(right: 17),
-                                child: const Icon(
-                                  Icons.account_circle,
-                                  size: 22,
-                                  color: Colors.white,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                margin: EdgeInsets.only(right: 30),
+                                child: Center(
+                                  child: Icon(
+                                    Icons.account_circle,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 decoration: const BoxDecoration(
-                                  //border : Border.all(width : 1, color : Colors.black),
+                                    //border : Border.all(width : 1, color : Colors.black),
                                     color: Color(0xDB2C736C),
                                     borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(5),
-                                      bottomRight: Radius.circular(5),
-                                    )),
+                                        topRight: Radius.circular(5),
+                                        bottomRight: Radius.circular(5))),
                               ))
                         ],
                       ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                                  padding:
-                                  const EdgeInsets.only(top: 30, left: 30),
-                                  child: const SizedBox(
-                                    width: 300,
-                                    height: 50,
-                                    child: TextField(
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor:  Color(0x99C2C2C2),
-
-                                      border: OutlineInputBorder(
-
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(5),
-                                            bottomLeft: Radius.circular(5),
-
-                                        ),
-                                        borderSide: BorderSide.none,
-
-
-                                      ),
-                                      labelText: 'Email',
-                                    ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    //width: 10,
-                                    padding: const EdgeInsets.only(
-                                        top: 13, right: 2, bottom: 15),
-                                    margin: const EdgeInsets.only(right: 17),
-                                    child: const Icon(
-                                      Icons.mail,
-                                      size: 22,
-                                      color: Colors.white,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      //border : Border.all(width : 1, color : Colors.black),
-                                        color: Color(0xDB2C736C),
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )),
-                                  ))
-                            ],
-                          ),
-                      Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                                  padding:
-                                  const EdgeInsets.only(top: 30, left: 30),
-                                  child: const SizedBox(
-                                    width: 300,
-                                    height: 50,
-                                    child: TextField(
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor:  Color(0x99C2C2C2),
-
-                                      border: OutlineInputBorder(
-
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(5),
-                                            bottomLeft: Radius.circular(5)
-                                        ),
-                                        borderSide: BorderSide.none,
-
-
-                                      ),
-                                      labelText: 'Phone',
-                                    ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    //width: 10,
-                                    padding: const EdgeInsets.only(
-                                        top: 13, right: 2, bottom: 15),
-                                    margin: const EdgeInsets.only(right: 17),
-                                    child: const Icon(
-                                      Icons.phone,
-                                      size: 22,
-                                      color: Colors.white,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      //border : Border.all(width : 1, color : Colors.black),
-                                        color: Color(0xDB2C736C),
-                                        borderRadius: BorderRadius.only(
-                                          //topRight: Radius.circular(10),
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )),
-                                  ))
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  //padding : EdgeInsets.fromLTRB(40, 30, 0,0) ,
-                                  padding:
-                                  const EdgeInsets.only(top: 30, left: 30),
-                                  child: const SizedBox(
-                                    width: 300,
-                                    height: 50,
-                                    child: TextField(
-                                      obscureText: true,
-                                      decoration:InputDecoration(
-                                      filled: true,
-                                      fillColor:  Color(0x99C2C2C2),
-
-                                      border: OutlineInputBorder(
-
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(5),
-                                            bottomLeft: Radius.circular(5)
-                                        ),
-                                        borderSide: BorderSide.none,
-
-
-                                      ),
-                                      labelText: 'Password',
-                                    ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    //width: 10,
-                                    padding: const EdgeInsets.only(
-                                        top: 13, right: 2, bottom: 15),
-                                    margin: const EdgeInsets.only(right: 17),
-                                    child: const Icon(
-                                      Icons.lock,
-                                      size: 22,
-                                      color: Colors.white,
-                                    ),
-                                    decoration: const BoxDecoration(
-                                      //border : Border.all(width : 1, color : Colors.black),
-                                        color: Color(0xDB2C736C),
-                                        borderRadius: BorderRadius.only(
-                                          //topRight: Radius.circular(10),
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5),
-                                        )),
-                                  ))
-                            ],
-                          ),
-                            SizedBox(height: 4,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:[
-                              SizedBox(width: 8),
-                              Expanded(
-                                flex : 2,
-                                  child: Container(
-                                    margin: EdgeInsets.only(left: 30, top: 13, right: 5),
-                                    //padding: EdgeInsets.only(right: 10),
-                                    width: 20,
-                                    height: 20,
-
-                                    decoration: BoxDecoration(color: Color(0xFF2C736C)),
-                                  ),
-                              ),
-                              Expanded(
-                                flex: 11,
-
-                                child : Container(
-                                  margin: EdgeInsets.only(top: 13),
-                                  child: Text(
-                                    "By continue you accept our terms & policy",
-
-                                    style: TextStyle(fontSize: 12, color: Color(0xFF2C736C),
-                                    letterSpacing: 1),
-                                  ),
-                                )
-                              )
-
-
-                            ]
-                          ),
-
-                      Container(
-                        width: 200,
-                        height: 45,
-                        margin: EdgeInsets.only(top: 12, bottom: 8),
-                        child: Center(
-                          child: Text("SIGN UP",
-                            style: TextStyle(color: Colors.white,
-                              fontSize: 20,
-                              fontStyle: FontStyle.italic,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              height: 0,),
-                          ),
-
-                        ),
-                        decoration: ShapeDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment(-1.00, 0.00),
-                            end: Alignment(1, 0),
-                            colors: [Color(0xFFE3B71D), Color(0xFF2C736C)],
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Form(
+                          child: Column(
                         children: [
-                          Container(
-                            width: 60,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0x995B5B5B),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 30, left: 30),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 50,
+                                    child: TextField(
+                                      controller: lastNameController,
+                                      obscureText: false,
+                                      style: TextStyle(
+                                          color:
+                                              Colors.black), // Set text color
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.grey[
+                                            200], // Set light gray background color
+                                        border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide.none, // Remove border
+                                          borderRadius: BorderRadius.circular(
+                                              5), // Add border radius
+                                        ),
+                                        hintText: 'Last name',
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    //width: 10,
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    margin: EdgeInsets.only(right: 30),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.account_circle,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                        //border : Border.all(width : 1, color : Colors.black),
+                                        color: Color(0xDB2C736C),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            bottomRight: Radius.circular(5))),
+                                  ))
+                            ],
                           ),
-                          SizedBox(width: 5,),
-                          Text(
-                            'Or',
-                            style: TextStyle(
-                              color: Color(0x995B5B5B),
-                              fontSize: 18,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
-                            ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 30, left: 30),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 50,
+                                    child: TextField(
+                                      controller: emailController,
+                                      obscureText: false,
+                                      style: TextStyle(
+                                          color:
+                                              Colors.black), // Set text color
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.grey[
+                                            200], // Set light gray background color
+                                        border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide.none, // Remove border
+                                          borderRadius: BorderRadius.circular(
+                                              5), // Add border radius
+                                        ),
+                                        hintText: 'Email',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    //width: 10,
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    margin: EdgeInsets.only(right: 30),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.mail,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                        //border : Border.all(width : 1, color : Colors.black),
+                                        color: Color(0xDB2C736C),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            bottomRight: Radius.circular(5))),
+                                  ))
+                            ],
                           ),
-                          SizedBox(width: 5,),
-                          Container(
-                            width: 60,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 1,
-                                  strokeAlign: BorderSide.strokeAlignCenter,
-                                  color: Color(0x995B5B5B),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 30, left: 30),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 50,
+                                    child: TextField(
+                                      controller: phoneController,
+                                      obscureText: false,
+                                      style: TextStyle(
+                                          color:
+                                              Colors.black), // Set text color
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.grey[
+                                            200], // Set light gray background color
+                                        border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide.none, // Remove border
+                                          borderRadius: BorderRadius.circular(
+                                              5), // Add border radius
+                                        ),
+                                        hintText: 'Phone',
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Text(
-                                  "Already a user?  ",
-                                style: TextStyle(
-                                  color: Color(0xFF5B5B5B),
-                                  fontSize: 14,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
+                              Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    //width: 10,
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    margin: EdgeInsets.only(right: 30),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.phone,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                        //border : Border.all(width : 1, color : Colors.black),
+                                        color: Color(0xDB2C736C),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            bottomRight: Radius.circular(5))),
+                                  ))
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 30, left: 30),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 50,
+                                    child: TextField(
+                                      controller: passwordController,
+                                      obscureText: true,
+                                      style: TextStyle(
+                                          color:
+                                              Colors.black), // Set text color
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.grey[
+                                            200], // Set light gray background color
+                                        border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide.none, // Remove border
+                                          borderRadius: BorderRadius.circular(
+                                              5), // Add border radius
+                                        ),
+                                        hintText: 'Password',
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-
-                            Container(
+                              Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    //width: 10,
+                                    //padding: EdgeInsets.only(
+                                    //  top: 10, right: 2, bottom: 10),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 15),
+                                    margin: EdgeInsets.only(right: 30),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.lock,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: const BoxDecoration(
+                                        //border : Border.all(width : 1, color : Colors.black),
+                                        color: Color(0xDB2C736C),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            bottomRight: Radius.circular(5))),
+                                  ))
+                            ],
+                          ),
+                          SizedBox(height: 20), // Added spacing
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 30),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      margin: EdgeInsets.only(right: 8),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color(0xDB2C736C), width: 2),
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.check,
+                                          size: 14,
+                                          color: Color(0xDB2C736C),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "By continue, you accept our term of policy",
+                                      style: TextStyle(
+                                        letterSpacing: 1,
+                                        color: Color(0xDB2C736C),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              /*Container(
+                                margin: EdgeInsets.only(right: 30),
                                 child: Text(
-                                    "Log In",
+                                  "Forgot Password?",
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 18,
-                                    fontStyle: FontStyle.italic,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0,
                                   ),
-
                                 ),
+                              ),*/
+                            ],
+                          ),
+                          SizedBox(height: 20), // Added spacing
+                          Container(
+                            width: 200,
+                            margin: EdgeInsets.symmetric(horizontal: 30),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              gradient: LinearGradient(
+                                colors: [Colors.yellow, Color(0xDB2C736C)],
+                              ),
                             ),
-                          ],
-                        ),
+                            child: TextButton(
+                              onPressed: () {
+                                print("in process");
+                                infosNewUser["first_name"] =
+                                    firstNameController.text;
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        "Informations valides ${infosNewUser["first_name"]}")));
+                                infosNewUser["last_name"] =
+                                    lastNameController.text;
+                                infosNewUser["email"] = emailController.text;
+                                infosNewUser["phone"] = phoneController.text;
+                                infosNewUser["password"] =
+                                    passwordController.text;
+                                // une fois les informations recoltés on envoi cela au backend
+                                sendInformationsForCreateAccounteToServer(
+                                    infosNewUser);
+                              },
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                              ),
+                              child: Text(
+                                "SIGN UP",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20), // Added spacing
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 90),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Divider(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Text(
+                                    "Or",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Divider(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20), // Added spacing
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Already a user? ",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  // Add navigation logic to the signup screen
+                                },
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
 
+                          SizedBox(height: 20),
                         ],
-
-
-
-
-
-
-
-                  ),
-                )
+                      ))
+                    ],
+                  )),
             ),
           )
         ],
       ),
     );
   }
+}
+
+void sendInformationsForCreateAccounteToServer(Map infosUser) {
+  //var responseRequest = http.post(Uri.parse("api_url"), body: infosUser);
+  //print(responseRequest.toString());
+  //log(12);
 }
