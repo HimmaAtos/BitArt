@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:front/my_flutter_app_icons.dart';
 
@@ -58,7 +60,7 @@ class _RegisterState extends State<Register> {
                                   child: const SizedBox(
                                     width: 300,
                                     child: TextField(
-                                      obscureText: true,
+                                      obscureText: false,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.only(
@@ -103,7 +105,7 @@ class _RegisterState extends State<Register> {
                                   child: const SizedBox(
                                     width: 300,
                                     child: TextField(
-                                      obscureText: true,
+                                      obscureText: false,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.only(
@@ -148,7 +150,7 @@ class _RegisterState extends State<Register> {
                                   child: const SizedBox(
                                     width: 300,
                                     child: TextField(
-                                      obscureText: true,
+                                      obscureText: false,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.only(
@@ -193,7 +195,7 @@ class _RegisterState extends State<Register> {
                                   child: const SizedBox(
                                     width: 300,
                                     child: TextField(
-                                      obscureText: true,
+                                      obscureText:false,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.only(
@@ -299,8 +301,6 @@ class _RegisterState extends State<Register> {
                                   ),
                                 )
                               )
-
-
                             ]
                           ),
 
@@ -308,7 +308,7 @@ class _RegisterState extends State<Register> {
                         width: 200,
                         height: 45,
                         margin: EdgeInsets.only(top: 12, bottom: 8),
-                        child: Center(
+                        child:  Center(
                           child: Text("SIGN UP",
                             style: TextStyle(color: Colors.white,
                               fontSize: 20,
@@ -346,6 +346,7 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                           ),
+                           
                           SizedBox(width: 5,),
                           Text(
                             'Or',

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:front/my_flutter_app_icons.dart';
@@ -111,7 +111,7 @@ class _BitArtHomeState extends State<BitArtHome> {
                       SizedBox(width: 20),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed("/login");
+                          Navigator.of(context).pushNamed("/LoginPage");
                         },
                         child: Text(
                           "Login",
