@@ -5,10 +5,17 @@ from .models import Utilisateur
 class UtilisateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Utilisateur
+        fields = '__all__'
+
+class UtilisateurAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Utilisateur
         fields = ['id', 'name', 'email', 'password','addresse','cni','profil']
         extra_kwargs = {
             'password': {'write_only': True}
         }
+
+
 
 
     def create(self, validated_data):
@@ -16,6 +23,19 @@ class UtilisateurSerializer(serializers.ModelSerializer):
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
+        instance.save()
+        return instance
+    
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        instance.name = validated_data.get('name', instance.name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.addresse = validated_data.get('addresse', instance.addresse)
+        instance.cni = validated_data.get('cni', instance.cni)
+        instance.profil = validated_data.get('profil', instance.profil)
+        if password is not None:
+            instance.set_password(password)
+
         instance.save()
         return instance
 
