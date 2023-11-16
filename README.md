@@ -58,14 +58,15 @@ Flutter(https://docs.flutter.dev/get-started/install) .Une fois installée , on 
           flutter doctor
           
   Installer les dépendances
-         ** flutter pub get
-          flutter run**
+  
+          flutter pub get
+          flutter run
 
 **Partie backend**
 Python(https://www.python.org/downloads/). Une fois installée, nous allons créer un environnement virtuel :
 
-                **Linux : python3 -m venv env
-                Windows : py  -m venv env**
+                Linux : python3 -m venv env
+                Windows : py  -m venv env
                 
 Nous allons ensuite activer l’environnement :
 
