@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from .serializers import UtilisateurAuthSerializer, ChangePasswordSerializer,UtilisateurSerializer
+from .serializers import UtilisateurAuthSerializer,UtilisateurSerializer
 from .models import Utilisateur,isAuthenticate
 from rest_framework import generics
 from rest_framework.response import Response 
@@ -72,6 +72,7 @@ class LogoutView(APIView):
 
 @api_view(['GET', 'POST'])
 def utilisateur_list(request):
+    payload = isAuthenticate(request)
     if request.method == 'GET':
         utilisateurs = Utilisateur.objects.all()
         serializer = UtilisateurAuthSerializer(utilisateurs, many=True)
