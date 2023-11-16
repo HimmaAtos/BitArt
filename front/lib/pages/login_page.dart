@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:front/models/UtilisateurModel.dart';
+import 'package:front/services/utilisateurService.dart';
+
 import 'package:http/http.dart' as http;
 
 class BitArtLoginPage extends StatefulWidget {
@@ -14,7 +17,6 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
   Map infosUser = {};
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  String endPoint = "";
 
   void sendInformationsForLoginToServer(Map infosUser, String endPoint) {
     var responseRequest = http.post(Uri.parse(endPoint), body: infosUser);
@@ -219,9 +221,11 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        infosUser["email"] = emailController.text;
-                        infosUser["password"] = passwordController.text;
-                        sendInformationsForLoginToServer(infosUser, endPoint);
+                        UtilisateurModel user = new UtilisateurModel();
+
+                        user.email = emailController.text;
+                        user.password = passwordController.text;
+                        UtilisateurState().login(user);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 10),

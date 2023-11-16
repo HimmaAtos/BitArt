@@ -439,17 +439,17 @@ class _RegisterState extends State<Register> {
                             child: TextButton(
                               onPressed: () {
                                 print("in process");
-                                infosNewUser["first_name"] =
-                                    firstNameController.text;
+                                // infosNewUser["first_name"] =
+                                //   firstNameController.text;
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text(
                                         "Informations valides ${infosNewUser["first_name"]}")));
-                                infosNewUser["last_name"] =
-                                    lastNameController.text;
-                                infosNewUser["email"] = emailController.text;
-                                infosNewUser["phone"] = phoneController.text;
-                                infosNewUser["password"] =
-                                    passwordController.text;
+                                //infosNewUser["last_name"] =
+                                //   lastNameController.text;
+                                //infosNewUser["email"] = emailController.text;
+                                //infosNewUser["phone"] = phoneController.text;
+                                //infosNewUser["password"] =
+                                //    passwordController.text;
                                 // une fois les informations recoltés on envoi cela au backend
 
                                 UtilisateurModel user = UtilisateurModel(
@@ -458,12 +458,9 @@ class _RegisterState extends State<Register> {
                                   email: emailController.text,
                                   password: passwordController.text,
                                 );
+
+                                // appel de la fonction register pour envoyer les resquetes
                                 UtilisateurState().register(user);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("${user.toString()}")));
-                                // sendInformationsForCreateAccounteToServer(
-                                //     infosNewUser, endPoint);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 10),
