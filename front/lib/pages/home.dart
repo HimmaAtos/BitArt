@@ -111,7 +111,7 @@ class _BitArtHomeState extends State<BitArtHome> {
                       SizedBox(width: 20),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pushNamed("/login");
+                          Navigator.of(context).pushNamed("/LoginPage");
                         },
                         child: Text(
                           "Login",

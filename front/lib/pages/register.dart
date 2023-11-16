@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:html';
-import 'dart:math';
+//import 'dart:html';
+//import 'dart:math';
 
 import 'package:flutter/material.dart';
 //import 'package:front/my_flutter_app_icons.dart';
@@ -21,6 +21,18 @@ class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final validatorFirstName = GlobalKey<FormState>();
+
+  String endPoint = "";
+
+  void sendInformationsForCreateAccounteToServer(
+      Map infosUser, String endPoint) {
+    var responseRequest = http.post(Uri.parse(endPoint), body: infosUser);
+    //print(responseRequest.toString());
+    //log(12);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,9 +83,16 @@ class _RegisterState extends State<Register> {
                               child: SizedBox(
                                 width: 300,
                                 height: 50,
-                                child: TextField(
+                                child: TextFormField(
+                                  //key : validatorFirstName,
                                   controller: firstNameController,
                                   obscureText: false,
+                                  //key : validatorFirstName,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Saisir une entreée valide !";
+                                    }
+                                  },
                                   style: TextStyle(
                                       color: Colors.black), // Set text color
                                   decoration: InputDecoration(
@@ -127,9 +146,14 @@ class _RegisterState extends State<Register> {
                                   child: SizedBox(
                                     width: 300,
                                     height: 50,
-                                    child: TextField(
+                                    child: TextFormField(
                                       controller: lastNameController,
                                       obscureText: false,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Saisir un nom valide !";
+                                        }
+                                      },
                                       style: TextStyle(
                                           color:
                                               Colors.black), // Set text color
@@ -181,8 +205,14 @@ class _RegisterState extends State<Register> {
                                   child: SizedBox(
                                     width: 300,
                                     height: 50,
-                                    child: TextField(
+                                    child: TextFormField(
                                       controller: emailController,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Saisir un email valide !";
+                                        }
+                                      },
+
                                       obscureText: false,
                                       style: TextStyle(
                                           color:
@@ -235,9 +265,14 @@ class _RegisterState extends State<Register> {
                                   child: SizedBox(
                                     width: 300,
                                     height: 50,
-                                    child: TextField(
+                                    child: TextFormField(
                                       controller: phoneController,
                                       obscureText: false,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Saisir un numero valide !";
+                                        }
+                                      },
                                       style: TextStyle(
                                           color:
                                               Colors.black), // Set text color
@@ -289,9 +324,14 @@ class _RegisterState extends State<Register> {
                                   child: SizedBox(
                                     width: 300,
                                     height: 50,
-                                    child: TextField(
+                                    child: TextFormField(
                                       controller: passwordController,
                                       obscureText: true,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Saisir un mot de passe  valide !";
+                                        }
+                                      },
                                       style: TextStyle(
                                           color:
                                               Colors.black), // Set text color
@@ -409,7 +449,7 @@ class _RegisterState extends State<Register> {
                                     passwordController.text;
                                 // une fois les informations recoltés on envoi cela au backend
                                 sendInformationsForCreateAccounteToServer(
-                                    infosNewUser);
+                                    infosNewUser, endPoint);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -488,10 +528,4 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-}
-
-void sendInformationsForCreateAccounteToServer(Map infosUser) {
-  //var responseRequest = http.post(Uri.parse("api_url"), body: infosUser);
-  //print(responseRequest.toString());
-  //log(12);
 }

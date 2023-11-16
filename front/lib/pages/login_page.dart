@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 
 class BitArtLoginPage extends StatefulWidget {
   const BitArtLoginPage({super.key});
@@ -11,6 +11,17 @@ class BitArtLoginPage extends StatefulWidget {
 }
 
 class _BitArtLoginPageState extends State<BitArtLoginPage> {
+  Map infosUser = {};
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  String endPoint = "";
+
+  void sendInformationsForLoginToServer(Map infosUser, String endPoint) {
+    var responseRequest = http.post(Uri.parse(endPoint), body: infosUser);
+    print(responseRequest.toString());
+    //log(12);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,19 +67,28 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                     children: [
                       Expanded(
                         flex: 4,
-                          child: Container(
+                        child: Container(
                           padding: EdgeInsets.only(top: 30, left: 30),
                           child: SizedBox(
                             width: 300,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: emailController,
                               obscureText: false,
-                              style: TextStyle(color: Colors.black), // Set text color
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Saisir un email valide";
+                                }
+                              },
+                              style: TextStyle(
+                                  color: Colors.black), // Set text color
                               decoration: InputDecoration(
                                 filled: true,
-                                fillColor: Colors.grey[200], // Set light gray background color
+                                fillColor: Colors.grey[
+                                    200], // Set light gray background color
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none, // Remove border
-                                  borderRadius: BorderRadius.circular(5), // Add border radius
+                                  borderRadius: BorderRadius.circular(
+                                      5), // Add border radius
                                 ),
                                 hintText: 'E-mail',
                               ),
@@ -81,10 +101,12 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                         child: Container(
                           padding: EdgeInsets.only(top: 8, right: 2),
                           margin: EdgeInsets.only(right: 17),
-                          child: Icon(Icons.email, size: 50, color: Colors.white),
+                          child:
+                              Icon(Icons.email, size: 50, color: Colors.white),
                           decoration: BoxDecoration(
                             color: Color(0xDB2C736C),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20)),
                           ),
                         ),
                       ),
@@ -99,15 +121,24 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                           padding: EdgeInsets.only(top: 30, left: 30),
                           child: SizedBox(
                             width: 300,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: passwordController,
                               obscureText: true,
-                              style: TextStyle(color: Colors.black), // Set text color
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Saisir un mot de passe valide";
+                                }
+                              },
+                              style: TextStyle(
+                                  color: Colors.black), // Set text color
                               decoration: InputDecoration(
                                 filled: true,
-                                fillColor: Colors.grey[200], // Set light gray background color
+                                fillColor: Colors.grey[
+                                    200], // Set light gray background color
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none, // Remove border
-                                  borderRadius: BorderRadius.circular(5), // Add border radius
+                                  borderRadius: BorderRadius.circular(
+                                      5), // Add border radius
                                 ),
                                 hintText: 'Password',
                               ),
@@ -120,10 +151,12 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                         child: Container(
                           padding: EdgeInsets.only(top: 8, right: 2),
                           margin: EdgeInsets.only(right: 17),
-                          child: Icon(Icons.lock, size: 50, color: Colors.white),
+                          child:
+                              Icon(Icons.lock, size: 50, color: Colors.white),
                           decoration: BoxDecoration(
                             color: Color(0xDB2C736C),
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20)),
                           ),
                         ),
                       ),
@@ -142,7 +175,8 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                               height: 20,
                               margin: EdgeInsets.only(right: 8),
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xDB2C736C), width: 2),
+                                border: Border.all(
+                                    color: Color(0xDB2C736C), width: 2),
                                 borderRadius: BorderRadius.circular(3),
                               ),
                               child: Center(
@@ -185,7 +219,9 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        // Add your login logic here
+                        infosUser["email"] = emailController.text;
+                        infosUser["password"] = passwordController.text;
+                        sendInformationsForLoginToServer(infosUser, endPoint);
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 10),
