@@ -4,8 +4,10 @@
 //import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:front/models/UtilisateurModel.dart';
 //import 'package:front/my_flutter_app_icons.dart';
 import 'package:http/http.dart' as http;
+import './../services/utilisateurService.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -16,6 +18,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   Map infosNewUser = {};
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -24,7 +27,7 @@ class _RegisterState extends State<Register> {
 
   final validatorFirstName = GlobalKey<FormState>();
 
-  String endPoint = "";
+  String endPoint = "/http:127.0.0.1:8000/register";
 
   void sendInformationsForCreateAccounteToServer(
       Map infosUser, String endPoint) {
@@ -448,8 +451,19 @@ class _RegisterState extends State<Register> {
                                 infosNewUser["password"] =
                                     passwordController.text;
                                 // une fois les informations recoltés on envoi cela au backend
-                                sendInformationsForCreateAccounteToServer(
-                                    infosNewUser, endPoint);
+
+                                UtilisateurModel user = UtilisateurModel(
+                                  firstName: firstNameController.text,
+                                  lastName: lastNameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                                UtilisateurState().register(user);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("${user.toString()}")));
+                                // sendInformationsForCreateAccounteToServer(
+                                //     infosNewUser, endPoint);
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.symmetric(vertical: 10),
