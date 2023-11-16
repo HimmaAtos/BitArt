@@ -47,15 +47,35 @@ Fonctionnement :
   2. MV met à jour les classes
   3. Reconstruction automatique par flutter l’arborescence des widgets
      
-**PostgreSQL** : Pour la base de données
+**SQLlite** : Pour la base de données
 
 **Envirronement de travail** : Voici les outils à télécharger et insaller pour éxecuter notre travail.
 
 **Partie frontend**
-[Android Studio(https://developer.android.com/studio)]
-[Flutter(https://docs.flutter.dev/get-started/install)]
+Android Studio(https://developer.android.com/studio)
+Flutter(https://docs.flutter.dev/get-started/install) .Une fois installée , on tape cette commande  pour vérifier si tout est okay.
+          flutter doctor
+  Installer les dépendances
+          flutter pub get
+          flutter run
 
 **Partie backend**
-[Python(https://www.python.org/downloads/)]
-[PostgreSQL(https://www.postgresql.org/download/)]
+Python(https://www.python.org/downloads/). Une fois installée, nous allons créer un environnement virtuel :
+                Linux : python3 -m venv env 
+                Windows : py  -m venv env
+Nous allons ensuite activer l’environnement :
+                Linux : source path_env/bin/activate
+                Windows : .\env\Scripts\activate.bat (powershell)
+Et enfin nous allons installer les dependances contenues dans le fichier requierment.txt
+                pip install -r requierement.txt
+Pour démarrer l’application il suffit de se mettre dans la racine du projet django et de mettre la commande suivante :
+Linux : 
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+        python3 manager.py runserver
+Windows : 
+          py .\manage.py makemigrations
+          py .\manage.py migrate
+          py .\manager.py runserver
+
 
