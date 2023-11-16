@@ -13,6 +13,7 @@ class BitArtLoginPage extends StatefulWidget {
 class _BitArtLoginPageState extends State<BitArtLoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  
 Future<void> loginUser(String email, String password) async {
   var url = Uri.parse('http://url/login'); 
   var response = await http.post(
