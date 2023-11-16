@@ -1,0 +1,15 @@
+# Default ignored files
+/build/*
+build/*
+build
+/.dart_tool
+.dart_tool
+.idea
+/.idea
+/app
+flutter_assets
+/flutter_assets
+/kotlin
+kotlin
+*/
+**/
