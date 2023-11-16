@@ -9,7 +9,6 @@ import 'package:front/pages/register.dart';
 
 void main() {
   
-
   runApp(MaterialApp(
     routes: <String, WidgetBuilder>{
       "/home": (BuildContext context) => const BitArtHome(),
