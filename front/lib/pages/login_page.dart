@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_import
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 
@@ -11,6 +11,18 @@ class BitArtLoginPage extends StatefulWidget {
 }
 
 class _BitArtLoginPageState extends State<BitArtLoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+Future<void> loginUser(String email, String password) async {
+  var url = Uri.parse('http://url/login'); 
+  var response = await http.post(
+    url,
+    body: {
+      'email': email,
+      'password': password,
+    },
+  );
+}
    bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -189,6 +201,7 @@ class _BitArtLoginPageState extends State<BitArtLoginPage> {
                     child: TextButton(
                       onPressed: () {
                         // Add your login logic here
+                        loginUser('user@example.com', 'password123');
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 10),
