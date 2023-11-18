@@ -53,17 +53,6 @@ Fonctionnement :
 
 **Envirronement de travail** : Voici les outils à télécharger et insaller pour éxecuter notre travail.
 
-**Partie frontend**
-Android Studio(https://developer.android.com/studio)
-Flutter(https://docs.flutter.dev/get-started/install) .Une fois installée , on tape cette commande  pour vérifier si tout est okay.
-
-          flutter doctor
-          
-  Installer les dépendances
-  
-          flutter pub get
-          flutter run
-
 **Partie backend**
 Python(https://www.python.org/downloads/). Une fois installée, nous allons créer un environnement virtuel :
 
