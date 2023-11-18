@@ -80,3 +80,6 @@ Windows :
           py .\manage.py migrate
           py .\manager.py runserver
 
+
+**Partie frontend**
+https://github.com/HimmaAtos/bitartfront
