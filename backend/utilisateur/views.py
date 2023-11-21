@@ -72,6 +72,7 @@ class LogoutView(APIView):
 
 @api_view(['GET', 'POST'])
 def utilisateur_list(request):
+    payload = isAuthenticate(request)
     if request.method == 'GET':
         utilisateurs = Utilisateur.objects.all()
         serializer = UtilisateurAuthSerializer(utilisateurs, many=True)
