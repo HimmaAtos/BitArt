@@ -6,12 +6,12 @@ import jwt, datetime
 
 # Create your models here.
 class Utilisateur(AbstractUser):
-    name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
-    addresse = models.CharField(max_length=255)
-    cni = models.CharField(max_length=255)
-    profil = models.CharField(max_length=255)
+    addresse = models.CharField(max_length=255,blank=True)
+    cni = models.CharField(max_length=255,blank=True)
+    profil = models.CharField(max_length=255,default='Acheteur')
+    image = models.ImageField(default='images/image.jpg')
     username = None
 
     USERNAME_FIELD = 'email'

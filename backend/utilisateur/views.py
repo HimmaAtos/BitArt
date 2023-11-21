@@ -2,13 +2,14 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from .serializers import UtilisateurSerializer
+from .serializers import UtilisateurAuthSerializer,UtilisateurSerializer
 from .models import Utilisateur,isAuthenticate
 from rest_framework import generics
 from rest_framework.response import Response 
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 import jwt, datetime
+from panier.models import Panier
 
 
 """
@@ -16,10 +17,18 @@ import jwt, datetime
 """
 class RegisterView(APIView):
     def post(self, request):
+        user = request.data
         serializer = UtilisateurAuthSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        user = Utilisateur.objects.filter(email=serializer.data['email']).first()
+        panier = Panier(utilisateur=user)
+        panier.save()
+        response = Response()
+        response.data = {
+            'message': "Utilisateur enregistrer avec succes",
+        }
+        return response
 
 """
     Login 
@@ -48,8 +57,12 @@ class LoginView(APIView):
         response = Response()
 
         response.set_cookie(key='jwt', value=token, httponly=True)
+        
+        
+        serializer = UtilisateurAuthSerializer(user)
         response.data = {
-            'jwt': token
+            'jwt': token,
+            'user': serializer.data
         }
         return response
 
@@ -72,6 +85,7 @@ class LogoutView(APIView):
 
 @api_view(['GET', 'POST'])
 def utilisateur_list(request):
+    payload = isAuthenticate(request)
     if request.method == 'GET':
         utilisateurs = Utilisateur.objects.all()
         serializer = UtilisateurAuthSerializer(utilisateurs, many=True)
@@ -87,11 +101,11 @@ def utilisateur_detail(request, pk):
     payload = isAuthenticate(request)
     try:
         utilisateur = Utilisateur.objects.get(pk=pk)
+        print(utilisateur.panier)
     except Utilisateur.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        print(utilisateur)
         serializer = UtilisateurAuthSerializer(utilisateur)
         return Response(serializer.data)
 

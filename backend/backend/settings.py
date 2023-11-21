@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-ck4$cb8z$w8_a%c*5mlp)$-#3nqotud*=-$v8jf88hzn@9)spo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '10.0.2.2',
+    '127.0.0.1',
+    'localhost'
+]
+
 
 
 
@@ -42,6 +47,11 @@ INSTALLED_APPS = [
     "corsheaders",
     "utilisateur",
     "article",
+    "commande",
+    "articlecommande",
+    "favori",
+    "panier",
+    
 ]
 
 MIDDLEWARE = [
@@ -131,7 +141,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
