@@ -10,7 +10,8 @@ class Utilisateur(AbstractUser):
     password = models.CharField(max_length=255)
     addresse = models.CharField(max_length=255,blank=True)
     cni = models.CharField(max_length=255,blank=True)
-    profil = models.CharField(max_length=255,blank=True)
+    profil = models.CharField(max_length=255,default='Acheteur')
+    image = models.ImageField(default='images/image.jpg')
     username = None
 
     USERNAME_FIELD = 'email'

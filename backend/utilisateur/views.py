@@ -48,8 +48,10 @@ class LoginView(APIView):
         response = Response()
 
         response.set_cookie(key='jwt', value=token, httponly=True)
+        serializer = UtilisateurAuthSerializer(user)
         response.data = {
-            'jwt': token
+            'jwt': token,
+            'user': serializer.data
         }
         return response
 
