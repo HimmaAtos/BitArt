@@ -1,21 +1,17 @@
 from rest_framework import serializers
-from .models import Utilisateur
-from panier.serializers import PanierAllSerializer
+from .models import Panier
 
-class UtilisateurSerializer(serializers.ModelSerializer):
+
+class PanierSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Utilisateur
+        model = Panier
         fields = '__all__'
 
-class UtilisateurAuthSerializer(serializers.ModelSerializer):
-    panier = PanierAllSerializer(read_only=True)
+class PanierAllSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Utilisateur
-        fields = ['id', 'email', 'password','first_name','last_name','addresse','cni','profil','panier']
+        model = Panier
+        exclude = ['id','utilisateur']
         depth = 1
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
 
 
 

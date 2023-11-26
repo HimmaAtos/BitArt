@@ -24,7 +24,11 @@ class RegisterView(APIView):
         user = Utilisateur.objects.filter(email=serializer.data['email']).first()
         panier = Panier(utilisateur=user)
         panier.save()
-        return Response(serializer.data)
+        response = Response()
+        response.data = {
+            'message': "Utilisateur enregistrer avec succes",
+        }
+        return response
 
 """
     Login 
@@ -53,6 +57,8 @@ class LoginView(APIView):
         response = Response()
 
         response.set_cookie(key='jwt', value=token, httponly=True)
+        
+        
         serializer = UtilisateurAuthSerializer(user)
         response.data = {
             'jwt': token,
@@ -95,11 +101,11 @@ def utilisateur_detail(request, pk):
     payload = isAuthenticate(request)
     try:
         utilisateur = Utilisateur.objects.get(pk=pk)
+        print(utilisateur.panier)
     except Utilisateur.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        print(utilisateur)
         serializer = UtilisateurAuthSerializer(utilisateur)
         return Response(serializer.data)
 
