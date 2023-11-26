@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Commande
 from .serializers import CommandeSerializer
-
-
+from articlecommande.models import ArticleCommande
+from article.models import Article
 @api_view(['GET', 'POST'])
 def commande_list(request, format=None):
     """
@@ -19,6 +19,16 @@ def commande_list(request, format=None):
         serializer = CommandeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            print(serializer.data['id'])
+            commande = Commande.objects.get(pk=serializer.data['id'])
+            
+            for i in request.data['articles']:
+                a = Article.objects.get(pk=i)
+                artCom =ArticleCommande()
+                artCom.article =a
+                artCom.commande=commande
+                artCom.save()
+            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
