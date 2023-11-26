@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 import jwt, datetime
+from panier.models import Panier
 
 
 """
@@ -16,9 +17,13 @@ import jwt, datetime
 """
 class RegisterView(APIView):
     def post(self, request):
+        user = request.data
         serializer = UtilisateurAuthSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        user = Utilisateur.objects.filter(email=serializer.data['email']).first()
+        panier = Panier(utilisateur=user)
+        panier.save()
         return Response(serializer.data)
 
 """
