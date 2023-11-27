@@ -18,11 +18,8 @@ class UtilisateurAuthSerializer(serializers.ModelSerializer):
         }
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> refs/rewritten/resolve-conlict
     def create(self, validated_data):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
@@ -30,8 +27,6 @@ class UtilisateurAuthSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
-<<<<<<< HEAD
-=======
     
     def update(self, instance, validated_data):
         password = validated_data.pop('password', None)
@@ -46,4 +41,3 @@ class UtilisateurAuthSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
->>>>>>> refs/rewritten/resolve-conlict
