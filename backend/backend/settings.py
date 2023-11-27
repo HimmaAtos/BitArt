@@ -47,6 +47,11 @@ INSTALLED_APPS = [
     "corsheaders",
     "utilisateur",
     "article",
+    "commande",
+    "articlecommande",
+    "favori",
+    "panier",
+    
 ]
 
 MIDDLEWARE = [
