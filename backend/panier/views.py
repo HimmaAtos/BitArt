@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Panier
-from .serializers import PanierSerializer
+from .serializers import PanierSerializer,PanierAllSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -12,7 +12,7 @@ def panier_list(request, format=None):
     """
     if request.method == 'GET':
         paniers = Panier.objects.all()
-        serializer = PanierSerializer(paniers, many=True)
+        serializer = PanierAllSerializer(paniers, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':

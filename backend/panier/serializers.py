@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Panier
+from article.serializers import ArticleSerializer
 
 
 class PanierSerializer(serializers.ModelSerializer):
@@ -8,6 +9,7 @@ class PanierSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PanierAllSerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(many=True)
     class Meta:
         model = Panier
         exclude = ['id','utilisateur']
